@@ -16,6 +16,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
+import { DEFAULT_PROJECTS } from "../data/defaultProjects";
 
 
 const ToggleButton = ({ onClick, isShowingMore }) => (
@@ -121,7 +122,14 @@ const techStacks = [
 export default function FullWidthTabs() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(() => {
+    try {
+      const cached = JSON.parse(localStorage.getItem('projects') || '[]');
+      return cached.length > 0 ? cached : DEFAULT_PROJECTS;
+    } catch {
+      return DEFAULT_PROJECTS;
+    }
+  });
   const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
@@ -148,7 +156,9 @@ export default function FullWidthTabs() {
       if (certificatesResponse.error) throw certificatesResponse.error;
 
       // Supabase mengembalikan data dalam properti 'data'
-      const projectData = projectsResponse.data || [];
+      const projectData = (projectsResponse.data && projectsResponse.data.length > 0)
+        ? projectsResponse.data
+        : DEFAULT_PROJECTS;
       const certificateData = certificatesResponse.data || [];
 
       setProjects(projectData);
@@ -161,20 +171,36 @@ export default function FullWidthTabs() {
       // Dispatch custom event to notify other components (like About)
       window.dispatchEvent(new Event("portfolioDataUpdated"));
     } catch (error) {
-      console.error("Error fetching data from Supabase:", error.message);
+      console.warn("Using default projects list:", error.message);
+      setProjects(DEFAULT_PROJECTS);
+      localStorage.setItem("projects", JSON.stringify(DEFAULT_PROJECTS));
+      window.dispatchEvent(new Event("portfolioDataUpdated"));
     }
   }, []);
 
 
 
   useEffect(() => {
-    // Coba ambil dari localStorage dulu untuk laod lebih cepat
+    // Coba ambil dari localStorage dulu untuk load lebih cepat
     const cachedProjects = localStorage.getItem('projects');
     const cachedCertificates = localStorage.getItem('certificates');
 
-    if (cachedProjects && cachedCertificates) {
-        setProjects(JSON.parse(cachedProjects));
+    if (cachedProjects) {
+      try {
+        const parsed = JSON.parse(cachedProjects);
+        setProjects(parsed.length > 0 ? parsed : DEFAULT_PROJECTS);
+      } catch {
+        setProjects(DEFAULT_PROJECTS);
+      }
+    } else {
+      localStorage.setItem("projects", JSON.stringify(DEFAULT_PROJECTS));
+      window.dispatchEvent(new Event("portfolioDataUpdated"));
+    }
+
+    if (cachedCertificates) {
+      try {
         setCertificates(JSON.parse(cachedCertificates));
+      } catch {}
     }
     
     fetchData(); // Tetap panggil fetchData untuk sinkronisasi data terbaru

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck, Github } from "lucide-react"
+import { DEFAULT_PROJECTS } from "../data/defaultProjects"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -124,6 +125,7 @@ const AboutPage = () => {
     const updateStats = () => {
       const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
       const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
+      const projectCount = storedProjects.length > 0 ? storedProjects.length : DEFAULT_PROJECTS.length;
       
       const startDate = new Date("2025-01-01");
       const today = new Date();
@@ -131,7 +133,7 @@ const AboutPage = () => {
         (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
 
       setStats({
-        totalProjects: storedProjects.length,
+        totalProjects: projectCount,
         totalCertificates: storedCertificates.length,
         YearExperience: experience
       });

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toSlug } from "../utils/slug";
+import { DEFAULT_PROJECTS } from "../data/defaultProjects";
 
 const TECH_ICONS = {
   React: Globe,
@@ -26,6 +27,9 @@ const TECH_ICONS = {
   Javascript: Code,
   HTML: Code,
   CSS: Code,
+  Flutter: Layers,
+  Dart: Code2,
+  Mobile: Layout,
   default: Package,
 };
 
@@ -127,8 +131,9 @@ const ProjectDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+    const allProjects = storedProjects.length > 0 ? storedProjects : DEFAULT_PROJECTS;
     // Cari project berdasarkan slug yang di-generate dari Title
-    const selectedProject = storedProjects.find(
+    const selectedProject = allProjects.find(
       (p) => toSlug(p.Title) === slug,
     );
 
