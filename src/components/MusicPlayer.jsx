@@ -1,36 +1,58 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX, Music } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(true);
   const audioRef = useRef(null);
   const hasStartedRef = useRef(false);
 
   useEffect(() => {
-    // Autoplay policy: Browser memblokir audio otomatis tanpa interaksi.
-    // Kita aktifkan otomatis saat pengunjung pertama kali mengklik layar.
-    const startAudioOnFirstClick = () => {
+    const events = ["click", "touchstart", "scroll", "keydown", "pointerdown"];
+
+    const removeListeners = () => {
+      events.forEach((evt) => {
+        window.removeEventListener(evt, triggerPlayOnInteraction);
+      });
+    };
+
+    const triggerPlayOnInteraction = () => {
       if (!hasStartedRef.current && audioRef.current) {
-        audioRef.current
-          .play()
+        const promise = audioRef.current.play();
+        if (promise !== undefined) {
+          promise
+            .then(() => {
+              setIsPlaying(true);
+              hasStartedRef.current = true;
+              removeListeners();
+            })
+            .catch((err) => {
+              console.log("Menunggu interaksi pengguna pertama:", err);
+            });
+        }
+      }
+    };
+
+    // 1. Coba autoplay langsung saat website pertama kali dimuat
+    if (audioRef.current) {
+      const initialPromise = audioRef.current.play();
+      if (initialPromise !== undefined) {
+        initialPromise
           .then(() => {
             setIsPlaying(true);
             hasStartedRef.current = true;
           })
-          .catch((err) => {
-            console.log("Autoplay waiting for direct user action:", err);
+          .catch(() => {
+            // Jika browser menolak autoplay tanpa gesture, dengarkan interaksi apapun
+            events.forEach((evt) => {
+              window.addEventListener(evt, triggerPlayOnInteraction, { passive: true });
+            });
           });
       }
-    };
-
-    window.addEventListener("click", startAudioOnFirstClick, { once: true });
-    window.addEventListener("touchstart", startAudioOnFirstClick, { once: true });
+    }
 
     return () => {
-      window.removeEventListener("click", startAudioOnFirstClick);
-      window.removeEventListener("touchstart", startAudioOnFirstClick);
+      removeListeners();
     };
   }, []);
 
@@ -71,8 +93,8 @@ export default function MusicPlayer() {
         preload="auto"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        onError={() => {
-          console.log("Menunggu file AboutYou.mp3 diletakkan di folder public.");
+        onError={(e) => {
+          console.warn("File AboutYou.mp3 belum terbaca atau sedang dimuat:", e);
         }}
       />
 
