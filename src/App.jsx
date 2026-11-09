@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import AnimatedBackground from "./components/Background";
 import { AnimatePresence } from "framer-motion";
 import Footer from "./components/Footer";
+import MusicPlayer from "./components/MusicPlayer";
 
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
@@ -66,6 +67,7 @@ function App() {
   <AnimatedBackground />
 </div>
       <BrowserRouter>
+        <MusicPlayer />
         <Routes>
           {/* PUBLIC */}
           <Route
