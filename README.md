@@ -2,7 +2,7 @@
 
 Hello everyone! 👋
 
-Welcome to my personal portfolio website repository. I'm **Nadhif Shoeema Goldist**, a Back-End Web Developer and AI Learning Enthusiast. This website is built using modern web technologies featuring a sleek modern UI with 3D Spline interactive animations, smooth background effects, project showcases, certificates gallery, and an integrated comment system.
+Welcome to my personal portfolio website repository. I'm **Nadhif Shoeema Goldist**, an Android Developer and Applied/Basic AI Enthusiast. This website is built using modern web technologies featuring a sleek modern UI with 3D Spline interactive animations, smooth background effects, project showcases, certificates gallery, and an integrated comment system.
 
 **Live Demo:** [https://nadhifshoeemagoldist.vercel.app](https://nadhifshoeemagoldist.vercel.app)
 

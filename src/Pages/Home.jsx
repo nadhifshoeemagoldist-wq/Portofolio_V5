@@ -25,7 +25,7 @@ const MainTitle = memo(() => (
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-          Backend
+          Android
         </span>
       </span>
       <br />
@@ -77,8 +77,8 @@ const SocialLink = memo(({ icon: Icon, link, label }) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ["Back-End Developer", "AI Learning Enthusiast"];
-const TECH_STACK = ["Python", "Node.js", "Express", "PostgreSQL"];
+const WORDS = ["Android Developer", "Basic AI & ML Enthusiast", "Mobile App Developer"];
+const TECH_STACK = ["Kotlin", "Android Studio", "Jetpack Compose", "Gemini API", "Firebase"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/nadhifshoeemagoldist-wq", label: "GitHub Profile" },
 ];
@@ -138,12 +138,12 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Nadhif Shoeema Goldist — Back-End Web Developer</title>
-        <meta name="description" content="Website resmi Nadhif Shoeema Goldist, Back-End Web Developer. Masih belajar dan mencari arah, tertarik di AI learning dan pengembangan sistem yang handal." />
-     <meta name="robots" content="index, follow" />
+        <title>Nadhif Shoeema Goldist — Android Developer & AI Enthusiast</title>
+        <meta name="description" content="Website resmi Nadhif Shoeema Goldist, Android Developer & AI Enthusiast. Tertarik pada pengembangan aplikasi Android dan integrasi AI cerdas." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://nadhifshoeemagoldist.vercel.app" />
-        <meta property="og:title" content="Nadhif Shoeema Goldist — Back-End Web Developer" />
-     <meta property="og:description" content="Website resmi dan portofolio Nadhif Shoeema Goldist, Back-End Web Developer." />
+        <meta property="og:title" content="Nadhif Shoeema Goldist — Android Developer & AI Enthusiast" />
+        <meta property="og:description" content="Website resmi dan portofolio Nadhif Shoeema Goldist, Android Developer & AI Enthusiast." />
         <meta property="og:url" content="https://nadhifshoeemagoldist.vercel.app" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{`
@@ -151,7 +151,7 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Nadhif Shoeema Goldist",
-            "jobTitle": "Back-End Developer",
+            "jobTitle": "Android Developer",
             "url": "https://nadhifshoeemagoldist.vercel.app",
             "sameAs": [
               "https://github.com/nadhifshoeemagoldist-wq",
@@ -185,7 +185,7 @@ const Home = () => {
                   <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                     data-aos="fade-up"
                     data-aos-delay="1000">
-                    Masih belajar dan mencari arah, tertarik di AI Learning dan pengembangan sistem yang handal.
+                    Tertarik dalam pengembangan aplikasi Android dan eksplorasi Applied AI untuk membangun aplikasi mobile yang cerdas dan bermanfaat.
                   </p>
 
                   {/* Tech Stack */}

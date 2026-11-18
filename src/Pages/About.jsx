@@ -240,9 +240,9 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-        Saya adalah seorang yang masih belajar dan mencari arah di dunia teknologi.
-Saat ini saya tertarik pada Back-End Development dan AI Learning, dan berusaha membangun sistem yang bermanfaat dari setiap proyek yang saya kerjakan.
-                  </p>
+              Saya adalah seorang pengembang yang berfokus pada pengembangan aplikasi Android dan eksplorasi Applied AI. 
+              Tertarik membangun aplikasi mobile modern menggunakan Kotlin serta mengintegrasikan kecerdasan buatan untuk menciptakan solusi digital yang cerdas dan bermanfaat.
+            </p>
 
                {/* Quote Section */}
       <div 
