@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
 import { Helmet } from "react-helmet-async"
 import { Github, Mail, ExternalLink, Sparkles } from "lucide-react"
+import Spline from "@splinetool/react-spline"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -88,7 +89,6 @@ const Home = () => {
   const [wordIndex, setWordIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
     const initAOS = () => {
@@ -210,40 +210,24 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Right Column - WebM Video */}
-              <div className="w-full py-0 md:py-[10%] sm:py-0 lg:w-1/2 h-[260px] sm:h-[400px] lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2  mt-5 sm:mt-0"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
+              {/* Right Column - Spline 3D Scene */}
+              <div 
+                className="w-full lg:w-1/2 h-[500px] sm:h-[600px] lg:h-[750px] xl:h-[800px] relative flex items-center justify-center order-2 lg:order-2 mt-5 sm:mt-0"
                 data-aos="fade-left"
-                data-aos-delay="600">
-                <div className="relative w-full opacity-90">
-                  <div className={`absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${
-                    isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"
-                  }`}>
-                  </div>
-
-                  <div className={`relative lg:left-12 z-10 w-full opacity-90 transform transition-transform duration-500 ${
-                    isHovering ? "scale-105" : "scale-100"
-                  }`}>
-                    <img
-                      src="Animation1.gif"
-                      alt="Developer Animation"
-                      className={`w-full h-full object-contain transition-all duration-500 ${
-                        isHovering 
-                          ? "scale-[95%] sm:scale-[90%] md:scale-[90%] lg:scale-[90%] rotate-2" 
-                          : "scale-[90%] sm:scale-[80%] md:scale-[80%] lg:scale-[80%]"
-                      }`}
-                    />
-                  </div>
-
-                  <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
-                    isHovering ? "opacity-50" : "opacity-20"
-                  }`}>
-                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${
-                      isHovering ? "scale-110" : "scale-100"
-                    }`}>
-                    </div>
-                  </div>
+                data-aos-delay="600"
+              >
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Spline
+                    scene="https://prod.spline.design/O7sWMm8KOBxBAXqR/scene.splinecode"
+                    className="w-full h-full object-contain md:relative block"
+                    style={{
+                      clipPath: "inset(0 10% 8% 0)",
+                      transform: "scale(1.05)",
+                    }}
+                  />
+                </div>
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="opacity-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] delay-500" />
                 </div>
               </div>
             </div>
