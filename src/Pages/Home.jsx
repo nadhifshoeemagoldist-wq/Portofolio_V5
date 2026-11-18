@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
 import { Helmet } from "react-helmet-async"
 import { Github, Mail, ExternalLink, Sparkles } from "lucide-react"
-import Spline from "@splinetool/react-spline"
+import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -210,25 +210,18 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Right Column - Spline 3D Scene */}
+              {/* Right Column - Lottie Animation */}
               <div 
-                className="w-full lg:w-1/2 h-[500px] sm:h-[600px] lg:h-[750px] xl:h-[800px] relative flex items-center justify-center order-2 lg:order-2 mt-5 sm:mt-0"
+                className="w-full lg:w-1/2 h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] relative flex items-center justify-center order-2 lg:order-2 mt-5 sm:mt-0"
                 data-aos="fade-left"
                 data-aos-delay="600"
               >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Spline
-                    scene="https://prod.spline.design/O7sWMm8KOBxBAXqR/scene.splinecode"
-                    className="w-full h-full object-contain md:relative block"
-                    style={{
-                      clipPath: "inset(0 10% 8% 0)",
-                      transform: "scale(1.05)",
-                    }}
-                  />
-                </div>
-                <div className="absolute inset-0 pointer-events-none">
-                  <div className="opacity-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] delay-500" />
-                </div>
+                <DotLottieReact
+                  src="/Lottie.json"
+                  loop
+                  autoplay
+                  style={{ width: "100%", height: "100%" }}
+                />
               </div>
             </div>
           </div>
